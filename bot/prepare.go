@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -20,7 +21,7 @@ func (b *Bot) prepare(content_type, filename string) (fid string, err error) {
 	//构建数据
 	obj := prepare{
 		ContentType: content_type,
-		FileName:    filename,
+		FileName:    filepath.Base(filename),
 	}
 	var buf []byte
 	if buf, err = json.Marshal(&obj); err != nil {
